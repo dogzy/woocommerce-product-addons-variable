@@ -32,6 +32,7 @@ if( !class_exists( 'SPAONS' ) ):
             add_action( 'wp_ajax_change_product_variation', array( $this, 'change_product_variation') );
             add_action( 'wp_ajax_nopriv_change_product_variation', array( $this, 'change_product_variation') );
             add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );
+            register_activation_hook( __FILE__, array($this, 'install') );
 
         }
 
@@ -43,6 +44,26 @@ if( !class_exists( 'SPAONS' ) ):
         {
             $paypal_args['bn'] = 'AngellEYE_SP_WooCommerce';
             return $paypal_args;
+        }
+
+        /**
+         * Plugin Activation Dependency Check
+         */
+        function install() {
+            /**
+             * Check if WooCommerce & WooCommerce Product Add-ons are active
+             **/
+            if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ||
+                !in_array( 'woocommerce-product-addons/woocommerce-product-addons.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+
+                // Deactivate the plugin
+                deactivate_plugins(__FILE__);
+
+                // Throw an error in the wordpress admin console
+                $error_message = __('This plugin requires <a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a> &amp; <a href="http://www.woothemes.com/products/product-add-ons/">WooCommerce Product Add-ons</a> plugins to be active!', 'woocommerce');
+                die($error_message);
+
+            }
         }
 
         /*
@@ -145,5 +166,5 @@ if( !class_exists( 'SPAONS' ) ):
 
     }
 
-    $SPAONS = new SPAONS;
+    $SPAONS = new SPAONS();
 endif;
