@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Product Add-ons - Variable Product Extension
  * Plugin URI:
  * Description: Customizes the Product Add-ons extension so that variable products can be used with add-on features.
- * Version: 1.0.0
+ * Version: 0.1.0
  * Author: Angell EYE
  */
 if ( ! defined( 'ABSPATH' ) ) {
