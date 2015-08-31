@@ -23,6 +23,8 @@ if( !class_exists( 'SPAONS' ) ):
          */
         public function __construct()
         {
+            //Add PayPal Standard button arg
+            add_filter( 'woocommerce_paypal_args', array($this,'ae_paypal_standard_additional_parameters'));
             add_action( 'woocommerce_variation_options', array( $this, 'woocommerce_variation_options' ), 10, 3 );
             add_action( 'woocommerce_save_product_variation', array( $this, 'woocommerce_save_product_variation' ), 10, 2 );
             add_action( 'wp_head', array( $this, 'woocommerce_before_variations_form' ), 99 );
@@ -31,6 +33,16 @@ if( !class_exists( 'SPAONS' ) ):
             add_action( 'wp_ajax_nopriv_change_product_variation', array( $this, 'change_product_variation') );
             add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );
 
+        }
+
+        /**
+         * Add additional parameters to the PayPal Standard checkout built into WooCommerce.
+         *
+         */
+        public function ae_paypal_standard_additional_parameters($paypal_args)
+        {
+            $paypal_args['bn'] = 'AngellEYE_SP_WooCommerce';
+            return $paypal_args;
         }
 
         /*
