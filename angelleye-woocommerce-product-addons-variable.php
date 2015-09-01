@@ -30,19 +30,10 @@ if( !class_exists( 'SPAONS' ) ):
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9999 );
             add_action( 'wp_ajax_change_product_variation', array( $this, 'change_product_variation') );
             add_action( 'wp_ajax_nopriv_change_product_variation', array( $this, 'change_product_variation') );
-            add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );
+            add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );           
             register_activation_hook( __FILE__, array($this, 'install') );
+            register_deactivation_hook( __FILE__, array($this, 'deactivate') );
 
-        }
-
-        /**
-         * Add additional parameters to the PayPal Standard checkout built into WooCommerce.
-         *
-         */
-        public function ae_paypal_standard_additional_parameters($paypal_args)
-        {
-            $paypal_args['bn'] = 'AngellEYE_SP_WooCommerce';
-            return $paypal_args;
         }
 
         /**
@@ -63,7 +54,37 @@ if( !class_exists( 'SPAONS' ) ):
                 die($error_message);
 
             }
+            
+            /**
+             * Log activation in Angell EYE database via web service.
+             */
+            $log_url = $_SERVER['HTTP_HOST'];
+            $log_plugin_id = 99;
+            $log_activation_status = 1;
+            wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url=' . $log_url . '&plugin_id=' . $log_plugin_id . '&activation_status=' . $log_activation_status);
+
         }
+
+        /**
+         * Plugin Deactivation
+         */
+        function deactivate() {
+            $log_url = $_SERVER['HTTP_HOST'];
+            $log_plugin_id = 99;
+            $log_activation_status = 0;
+            wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url='.$log_url.'&plugin_id='.$log_plugin_id.'&activation_status='.$log_activation_status);
+
+        }
+
+        /**
+         * Add additional parameters to the PayPal Standard checkout built into WooCommerce.
+         *
+         */
+        public function ae_paypal_standard_additional_parameters($paypal_args)
+        {
+            $paypal_args['bn'] = 'AngellEYE_SP_WooCommerce';
+            return $paypal_args;
+        }      
 
         /*
          * add options variation
