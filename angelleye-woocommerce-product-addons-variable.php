@@ -27,8 +27,7 @@ if( !class_exists( 'SPAONS' ) ):
             add_filter( 'woocommerce_paypal_args', array($this,'ae_paypal_standard_additional_parameters'));
             add_action( 'woocommerce_variation_options', array( $this, 'woocommerce_variation_options' ), 10, 3 );
             add_action( 'woocommerce_save_product_variation', array( $this, 'woocommerce_save_product_variation' ), 10, 2 );
-            add_action( 'wp_head', array( $this, 'woocommerce_before_variations_form' ), 99 );
-            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts') );
+            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9999 );
             add_action( 'wp_ajax_change_product_variation', array( $this, 'change_product_variation') );
             add_action( 'wp_ajax_nopriv_change_product_variation', array( $this, 'change_product_variation') );
             add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );
@@ -95,39 +94,9 @@ if( !class_exists( 'SPAONS' ) ):
         /*
          * add script
          */
-        function woocommerce_before_variations_form()
+        function enqueue_scripts()
         {
-            ?>
-            <script type="text/javascript">
-                jQuery(document).ready(function($){
-                    $(document).on('change','#format',function(){
-                        //$('input[name="variation_id"]').change(function(){
-                        $variation_id = $('input[name=variation_id]').val();
-                        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-                        $.post(
-                            ajaxurl,
-                            {
-                                'action': 'change_product_variation',
-                                'data':   $variation_id
-                            },
-                            function(response){
-                                style_add_ons(response);
-                            });
-                    });
-                    function style_add_ons(bool)
-                    {
-                        if ( bool == 'yes' )
-                        {
-                            $('.product-addon').css('display', 'block')
-                        }
-                        else
-                        {
-                            $('.product-addon').css('display', 'none');
-                        }
-                    }
-                });
-            </script>
-            <?php
+            wp_enqueue_script( 'addons-variation', __AONURL__ . 'assets/addons-variation.js', array(), '1.0.0', true );
         }
 
         /*
@@ -146,22 +115,6 @@ if( !class_exists( 'SPAONS' ) ):
             $add_ons = get_post_meta( $variation_id, '_variable_add_ons', true );
             if( $add_ons == 'no' ) $cart_item_data = '';
             return $cart_item_data;
-        }
-
-        /*
-         *
-         */
-        function admin_enqueue_scripts()
-        {
-
-        }
-
-        /**
-         * destruct
-         */
-        public function __destruct()
-        {
-
         }
 
     }
