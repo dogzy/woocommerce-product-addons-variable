@@ -94,7 +94,7 @@ if( !class_exists( 'SPAONS' ) ):
             $add_ons = get_post_meta( $variation->ID, '_variable_add_ons', true );
             ?>
             <label><input type="checkbox" class="checkbox" name="variable_add_ons[<?php echo $loop; ?>]" <?php checked( $add_ons, 'yes' ); ?> /> <?php _e( 'Display add-ons', 'woocommerce' ); ?>
-                <a class="tips" data-tip="<?php esc_attr_e( 'Enable Options Add Ons', 'woocommerce' ); ?>" href="#">[?]</a>
+                <a class="tips" data-tip="<?php esc_attr_e( 'Enable Product Add-Ons', 'woocommerce' ); ?>" href="#">[?]</a>
             </label>
             <?php
         }
