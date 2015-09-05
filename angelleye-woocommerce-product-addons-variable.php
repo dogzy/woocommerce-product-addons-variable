@@ -57,11 +57,12 @@ if( !class_exists( 'SPAONS' ) ):
             
             /**
              * Log activation in Angell EYE database via web service.
+             * @todo need to add option to enable this.
              */
-            $log_url = $_SERVER['HTTP_HOST'];
-            $log_plugin_id = 11;
-            $log_activation_status = 1;
-            wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url=' . $log_url . '&plugin_id=' . $log_plugin_id . '&activation_status=' . $log_activation_status);
+            //$log_url = $_SERVER['HTTP_HOST'];
+            //$log_plugin_id = 11;
+            //$log_activation_status = 1;
+            //wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url=' . $log_url . '&plugin_id=' . $log_plugin_id . '&activation_status=' . $log_activation_status);
 
         }
 
@@ -69,10 +70,11 @@ if( !class_exists( 'SPAONS' ) ):
          * Plugin Deactivation
          */
         function deactivate() {
-            $log_url = $_SERVER['HTTP_HOST'];
-            $log_plugin_id = 11;
-            $log_activation_status = 0;
-            wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url='.$log_url.'&plugin_id='.$log_plugin_id.'&activation_status='.$log_activation_status);
+            // @todo need to add option to enable this.
+            //$log_url = $_SERVER['HTTP_HOST'];
+            //$log_plugin_id = 11;
+            //$log_activation_status = 0;
+            //wp_remote_request('http://www.angelleye.com/web-services/wordpress/update-plugin-status.php?url='.$log_url.'&plugin_id='.$log_plugin_id.'&activation_status='.$log_activation_status);
 
         }
 
