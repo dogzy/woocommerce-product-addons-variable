@@ -48,6 +48,6 @@ This plugin sets the default so that Product Add-on options are not displayed fo
 
 == Changelog ==
 
-= 0.1.0 =
+= 0.1.0 - 09.07.2015 =
 
 * Adds a checkbox to the variable product options so that you may enable/disable the WooCommerce Product Add-Ons fields at the product variation level.
