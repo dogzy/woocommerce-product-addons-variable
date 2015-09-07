@@ -44,10 +44,10 @@ In the search field type "WooCommerce Product Add-Ons Variable" and click Search
 
 By default, the WooCommerce Product Add-Ons extension only works at the product level, which means you cannot hide the Product Add-On fields based on variable products.
 
-This plugin adds a checkbox to the variable product options so that you may disable the Add-On fields at the product variation level.
+This plugin sets the default so that Product Add-on options are not displayed for variable products unless specifically enabled via a check-box at the product variation level.
 
 == Changelog ==
 
 = 0.1.0 =
 
-* Adds a checkbox to the variable product options so that you may disable the WooCommerce Product Add-Ons fields at the product variation level.
+* Adds a checkbox to the variable product options so that you may enable/disable the WooCommerce Product Add-Ons fields at the product variation level.
