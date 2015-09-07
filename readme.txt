@@ -1,4 +1,4 @@
-=== WooCommerce Product Add-Ons Variable ===
+=== WooCommerce Variable Product Add-Ons ===
 Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V9S328N3XGEAG
 Tags: woocommerce, product add-ons, variable
@@ -8,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Adds variable product compatibility to the WooCommerce Product Add-Ons extension.
+Adds the ability to enable/disable Product Add-Ons (from the WooCommerce Product Add-Ons extension) at the product variation level.
 
 == Description ==
 
