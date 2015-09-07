@@ -1,4 +1,4 @@
-=== WooCommerce Product Add-ons Variable ===
+=== WooCommerce Product Add-Ons Variable ===
 Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V9S328N3XGEAG
 Tags: woocommerce, product add-ons, variable
