@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
     });
     function style_add_ons(bool)
     {
-        if ( bool == 'yes' )
+        if ( bool == 'no' )
         {
             $('.product-addon').css('display', 'block')
         }
