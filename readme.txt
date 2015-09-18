@@ -8,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Adds the ability to enable/disable Product Add-Ons (from the WooCommerce Product Add-Ons extension) at the product variation level.
+Adds the ability to disable Product Add-Ons (from the WooCommerce Product Add-Ons extension) at the product variation level.
 
 == Description ==
 
@@ -16,7 +16,7 @@ Adds the ability to enable/disable Product Add-Ons (from the WooCommerce Product
 
 The WooCommerce Product Add-Ons extension only works as the product level.  As such, if you add custom fields using the Product Add-Ons extension those fields will show up on every product variation you might be using.
 
-This extension adds a checkbox to the variable product options so that you can show / hide the Product Add-Ons fields accordingly.
+This extension adds a checkbox to the variable product options so that you can disable the Product Add-Ons fields for individual product variations.
 
 = Get Involved =
 Developers can contribute to the source code on the [WooCommerce Product Add-Ons Variable Git repository on GitHub](https://github.com/angelleye/woocommerce-product-addons-variable).
@@ -36,7 +36,7 @@ In the search field type "WooCommerce Product Add-Ons Variable" and click Search
 
 == Screenshots ==
 
-1. "Display add-ons" checkbox within variable product options.
+1. "Disable Product Add-Ons" checkbox within variable product options.
 
 == Frequently Asked Questions ==
 
@@ -44,9 +44,13 @@ In the search field type "WooCommerce Product Add-Ons Variable" and click Search
 
 By default, the WooCommerce Product Add-Ons extension only works at the product level, which means you cannot hide the Product Add-On fields based on variable products.
 
-This plugin sets the default so that Product Add-on options are not displayed for variable products unless specifically enabled via a check-box at the product variation level.
+This plugin adds an option to "Disable Product Add-Ons" to the product variation options so that you may disable Add-Ons for individual product variations.
 
 == Changelog ==
+
+= 0.1.1 - 09.18.2015 =
+
+* Reverses the default experience that we originally launched with.  Now, Product Add-Ons will always display by default unless you check the "Disable Product Add-Ons" box within a product variation's options.
 
 = 0.1.0 - 09.07.2015 =
 
