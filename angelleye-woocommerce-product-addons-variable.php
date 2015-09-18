@@ -81,7 +81,7 @@ if( !class_exists( 'SPAONS' ) ):
         {
             $add_ons = get_post_meta( $variation->ID, '_variable_add_ons', true );
             ?>
-            <label><input type="checkbox" class="checkbox" name="variable_add_ons[<?php echo $loop; ?>]" <?php checked( $add_ons, 'yes' ); ?> /> <?php _e( 'Display add-ons', 'woocommerce' ); ?>
+            <label><input type="checkbox" class="checkbox" name="variable_add_ons[<?php echo $loop; ?>]" <?php checked( $add_ons, 'yes' ); ?> /> <?php _e( 'Disable Product Add-Ons', 'woocommerce' ); ?>
                 <a class="tips" data-tip="<?php esc_attr_e( 'Disable Product Add-Ons', 'woocommerce' ); ?>" href="#">[?]</a>
             </label>
             <?php
@@ -115,7 +115,7 @@ if( !class_exists( 'SPAONS' ) ):
         {
             $product_id = $_POST['data'];
             $add_ons = get_post_meta( $product_id, '_variable_add_ons', true );
-            echo $add_ons;
+            echo empty($add_ons)? "no" : $add_ons;
             die();
         }
 
