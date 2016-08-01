@@ -30,7 +30,8 @@ if( !class_exists( 'SPAONS' ) ):
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9999 );
             add_action( 'wp_ajax_change_product_variation', array( $this, 'change_product_variation') );
             add_action( 'wp_ajax_nopriv_change_product_variation', array( $this, 'change_product_variation') );
-            add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );           
+            add_filter( 'woocommerce_add_cart_item_data', array( $this, 'woocommerce_add_cart_item_data'), 99, 3 );      
+            add_filter( 'get_product_addons', array( $this, 'get_product_addons'), 99, 1 );  
             register_activation_hook( __FILE__, array($this, 'install') );
             register_deactivation_hook( __FILE__, array($this, 'deactivate') );
 
@@ -124,6 +125,24 @@ if( !class_exists( 'SPAONS' ) ):
             $add_ons = get_post_meta( $variation_id, '_variable_add_ons', true );
             if( $add_ons == 'no' ) $cart_item_data = '';
             return $cart_item_data;
+        }
+        
+        function get_product_addons($addons) {
+            if( isset($_POST['variation_id']) && !empty($_POST['variation_id'])) {
+                if( isset($_POST['_variable_add_ons']) && $_POST['_variable_add_ons'] == false) {
+                    return $addons;
+                }
+                
+                $variation_id = $_POST['variation_id'];
+                $add_ons = get_post_meta( $variation_id, '_variable_add_ons', true );
+                if( $add_ons == 'yes') {
+                    $_POST['_variable_add_ons'] = false;
+                    return $addons = array();
+                } 
+                return $addons;
+            } else {
+                return $addons;
+            }
         }
 
     }
