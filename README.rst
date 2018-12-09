@@ -1,4 +1,10 @@
 ###################
+DEPRECATION NOTICE
+###################
+
+We are no longer actively building or supporting this plugin.  If you would like to take over feel free to fork the repo and continue where we left off.  If you are interested in some custom work to get this functionality working in your site please . `submit a quote request <https://www.angelleye.com/quote-request/>`_.
+
+###################
 Introduction
 ###################
 
